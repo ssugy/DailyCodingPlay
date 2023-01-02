@@ -1,0 +1,22 @@
+1. UniRX
+2. SRDebugger - https://assetstore.unity.com/?q=srdebugger&orderBy=1
+3. Unity UI Extensions - https://assetstore.unity.com/publishers/49267?locale=ko-KR
+4. 어드레서블
+5. 스크립터블 오브젝트
+
+
+완료
+1. 캔버스 그룹
+2. enum.parse(enumtype, string)
+ - enumtype은 typeof로 가져온다. string매개변수를 통해서 해당 enum의 값을 가져올 수 있다.
+
+
+사용방법
+0. 만들고자 하는 뷰를 prefab형태로 저장. Views에 저장한다.
+1. baseview형태확인. -> 가져올 뷰만 지정
+2. 
+
+
+
+
+와이파이 비밀번호 : dasverse2022
