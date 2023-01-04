@@ -26,6 +26,11 @@ public class _0102_Get : MonoBehaviour
         Debug.Log((int)obj);    // 이런식으로 바꿔서 사용 가능
         Debug.Log(obj.GetType());
 
+        // GetNames체크
+        foreach (var item in Enum.GetNames(typeof(STATE)))
+        {
+            Debug.Log("겟네임즈 : " + item);
+        }
         EnumCheck();
     }
 
@@ -34,17 +39,17 @@ public class _0102_Get : MonoBehaviour
 
     public static void EnumCheck()
     {
-        Console.WriteLine("The entries of the Colors enumeration are:");
+        Debug.Log("The entries of the Colors enumeration are:");
         foreach (string colorName in Enum.GetNames(typeof(Colors)))
         {
             // 1:D는 1번 파라미터를 데시멀 타입으로 표현하라는 의미
-            Console.WriteLine("{0} = {1:D}", colorName,
-                                         Enum.Parse(typeof(Colors), colorName));
+            string str = string.Format("{0} = {1:D}", colorName, Enum.Parse(typeof(Colors), colorName));
+            Debug.Log(str);
         }
-        Console.WriteLine();
+        Debug.Log("");
 
         Colors orange = (Colors)Enum.Parse(typeof(Colors), "Red, Yellow");
-        Console.WriteLine("The orange value {0:D} has the combined entries of {0}",
-                           orange);
+        string str2 = string.Format("The orange value {0:D} has the combined entries of {0}", orange);
+        Debug.Log(str2);
     }
 }
