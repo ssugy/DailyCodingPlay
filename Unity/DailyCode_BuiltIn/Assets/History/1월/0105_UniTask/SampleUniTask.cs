@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using UnityEngine.WSA;
+//using static UnityEditor.PlayerSettings;
+//using UnityEngine.WSA;
 
 public class SampleUniTask : MonoBehaviour
 {
