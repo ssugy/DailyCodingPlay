@@ -589,7 +589,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1832772226}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: ColorPickerExampleCustom, Assembly-CSharp
         m_MethodName: ChooseColorButtonClick
         m_Mode: 1
         m_Arguments:
@@ -5976,7 +5976,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1832772221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f24ee73d747cef4eb3b453d2dc11ba7, type: 3}
+  m_Script: {fileID: 11500000, guid: 49843983d8f5e034a95eb039ec0ae470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2012025927
