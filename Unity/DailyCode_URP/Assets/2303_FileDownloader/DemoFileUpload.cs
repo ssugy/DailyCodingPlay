@@ -11,7 +11,7 @@ public class DemoFileUpload : MonoBehaviour
     {
         m_FileTransfer = new FileTransfer(m_Port, FileTransfer.ETransfer.Upload, m_Ip);
         m_UploadFilePaths = new string[1];
-        m_UploadFilePaths[0] = Application.dataPath + "/History/3월_3_File전송_인터넷/UploadFileFolder/Lost in Space 2.webm";
+        m_UploadFilePaths[0] = Application.dataPath + "/History/3월_3_File전송/UploadFileFolder/TEST.png";
     }
 
     void Update()

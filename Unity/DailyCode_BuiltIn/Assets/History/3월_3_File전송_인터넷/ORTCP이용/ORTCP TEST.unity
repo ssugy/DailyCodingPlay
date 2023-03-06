@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c696e4348cbf35747980584bbeccc474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  server: {fileID: 1364615431}
 --- !u!1 &992052716
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +437,7 @@ MonoBehaviour:
   listenOn: 2
   autoListenOnDisconnect: 1
   port: 1933
-  socketType: 0
+  socketType: 1
   bufferSize: 1024
   listeners:
   - {fileID: 301078889}

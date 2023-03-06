@@ -35,4 +35,23 @@ public class Listener : MonoBehaviour
         Debug.Log("OnClientConnectionRefused 데이터");
     }
 
+    ///// ORTCP 기능확인
+    public ORTCPServer server;
+
+    private void Start()
+    {
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("1번키 누름");
+            byte[] bytes = new byte[5000];
+            bytes.SetValue((byte)1, 0);
+            Debug.Log(bytes[500]);
+            server.SendBytes(bytes);
+        }
+    }
 }

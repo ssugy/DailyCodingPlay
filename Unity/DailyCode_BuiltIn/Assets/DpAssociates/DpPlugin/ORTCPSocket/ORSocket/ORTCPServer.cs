@@ -311,10 +311,11 @@ public class ORTCPServer : MonoBehaviour {
 		
 		if (!isConnected)
 			return;
-		
-		_stream.Write(bytes, offset, size);
+
+        // 이슈
+		// 1. 동기함수 : 파일하나를 보낼 때 파일의 용량이 크면 프로그램이 멈춘다. (내부적으로 Send 사용)
+		// 2. 소켓플래그 : None으로 지정되어 있으며, 변경 할 수 없다.(컴파일 되어있음) : 조사해보니 대용량 파일 보낼 때 플래그는 Socket
+        _stream.Write(bytes, offset, size);	
 		_stream.Flush();
-
 	}
-
 }

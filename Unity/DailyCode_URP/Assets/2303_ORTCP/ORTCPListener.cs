@@ -14,9 +14,9 @@ public class ORTCPListener : MonoBehaviour
         Debug.Log("OnClientDisconnect ¿¬°áµÊ");
     }
 
-    private void OnDataReceived()
+    public void OnDataReceived(ORTCPEventParams eventParams)
     {
-        Debug.Log("OnDataReceived ¿¬°áµÊ");
+        Debug.Log("OnDataReceived ¿¬°áµÊ : " + eventParams.packet.bytesCount);
     }
 
     private void OnClientConnectionRefused()
