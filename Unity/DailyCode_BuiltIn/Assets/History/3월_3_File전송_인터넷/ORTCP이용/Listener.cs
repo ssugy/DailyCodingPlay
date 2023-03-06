@@ -30,11 +30,6 @@ public class Listener : MonoBehaviour
         Debug.Log("OnClientDisconnect 데이터");
     }
 
-    //public void OnDataReceived()
-    //{
-    //    Debug.Log("OnDataReceived 데이터");
-    //}
-
     public void OnClientConnectionRefused()
     {
         Debug.Log("OnClientConnectionRefused 데이터");
