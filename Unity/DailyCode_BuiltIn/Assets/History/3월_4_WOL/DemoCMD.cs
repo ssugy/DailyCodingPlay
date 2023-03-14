@@ -47,7 +47,7 @@ public class DemoCMD : MonoBehaviour
         pro.Start();
 
         // 명령어 입력
-        pro.StandardInput.Write(@"ping" + Environment.NewLine);
+        pro.StandardInput.Write(@"shutdown -r -t 0" + Environment.NewLine);
         pro.StandardInput.Close();
         string resultValue = pro.StandardOutput.ReadToEnd();
         pro.WaitForExit();  // 끝날때까지 기다리겠다는 의미.
