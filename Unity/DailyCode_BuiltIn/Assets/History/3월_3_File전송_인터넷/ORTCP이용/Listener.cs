@@ -47,11 +47,11 @@ public class Listener : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("1번키 누름");
-            byte[] bytes = new byte[5000];
-            bytes.SetValue((byte)1, 0);
-            Debug.Log(bytes[500]);
-            server.SendBytes(bytes);
+            //Debug.Log("1번키 누름");
+            //byte[] bytes = new byte[5000];
+            //bytes.SetValue((byte)1, 0);
+            //Debug.Log(bytes[500]);
+            //server.SendBytes(bytes);
         }
     }
 }
