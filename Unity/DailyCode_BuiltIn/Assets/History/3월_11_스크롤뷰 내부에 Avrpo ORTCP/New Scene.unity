@@ -928,7 +928,7 @@ MonoBehaviour:
   disconnectTryInterval: 3
   autoConnectOnConnectionRefused: 1
   connectionRefusedTryInterval: 3
-  hostname: localhost
+  hostname: 192.168.0.26
   port: 1933
   socketType: 1
   bufferSize: 1024
