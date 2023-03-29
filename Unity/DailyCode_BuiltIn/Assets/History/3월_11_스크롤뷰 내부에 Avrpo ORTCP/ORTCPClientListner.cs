@@ -6,6 +6,8 @@ public class ORTCPClientListner : MonoBehaviour
 {
     public ScrollViewManager manager;
 
+    float vertNormalPos;
+
     private void OnClientConnect(ORTCPEventParams eventParams)
     {
         Debug.Log("OnClientConnect : " + eventParams.message);
@@ -16,7 +18,9 @@ public class ORTCPClientListner : MonoBehaviour
     }
     private void OnDataReceived(ORTCPEventParams eventParams)
     {
+        vertNormalPos = float.Parse(eventParams.message);
         Debug.Log("OnDataReceived : " + eventParams.message);
+        ScrollViewManager.instance.SetVertNormalPos(vertNormalPos);
     }
     private void OnClientConnectionRefused(ORTCPEventParams eventParams)
     {

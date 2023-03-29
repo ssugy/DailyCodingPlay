@@ -12,15 +12,21 @@ public class DemoFileDownload : MonoBehaviour
     void Start()
     {
         //m_DownloadDirectory = new DirectoryInfo(m_DownloadFilePath);
+        //m_DownloadDirectory = new DirectoryInfo(Application.dataPath +"/History/3월_3_File전송/DownloadFolder/");
         m_DownloadDirectory = new DirectoryInfo(Application.dataPath +"/History/3월_3_File전송/DownloadFolder/");
         m_FileTransfer = new FileTransfer(m_Port, FileTransfer.ETransfer.Download);
         m_FileTransfer.Download(m_DownloadDirectory.FullName);
     }
 
+    
+
+
+
     void OnApplicationQuit()
     {
         if (m_FileTransfer != null)
         {
+            Debug.Log("파일전송 멈춤");
             m_FileTransfer.Close();
         }
     }
