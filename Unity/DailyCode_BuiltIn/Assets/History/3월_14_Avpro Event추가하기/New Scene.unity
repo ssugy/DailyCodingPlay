@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &111928662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -349,11 +349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638c870cac4da414fba921606d504407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_VideoLocation: 2
-  m_VideoPath: AVProVideoSamples/BigBuckBunny_360p30.mp4
+  m_VideoLocation: 1
+  m_VideoPath: sample.mp4
   m_AutoOpen: 1
   m_AutoStart: 1
-  m_Loop: 0
+  m_Loop: 1
   m_Volume: 1
   m_Balance: 0
   m_Muted: 0
@@ -899,7 +899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1420821922
 RectTransform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,21 @@ public class AvproEventAdder : MonoBehaviour
     private void Start()
     {
         media.Events.AddListener(EventChecker);
+
+        // 타이밍때문에 그런것 같은데.
+        //Debug.Log("미디어 크롭" + media.Info.GetCropRect());
+        //Debug.Log("GetVideoWidth" + media.Info.GetVideoWidth());      // 해상도 가로 맞음.
+        //Debug.Log("GetVideoHeight" + media.Info.GetVideoHeight());    // 해상도 높이 맞음. 대신 로드다 되고 그 뒤에 확인해야됨.
+        StartCoroutine(DelayedInfoCheck());
+    }
+
+    IEnumerator DelayedInfoCheck() 
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("미디어 크롭" + media.Info.GetCropRect());
+        Debug.Log("GetVideoWidth" + media.Info.GetVideoWidth());
+        Debug.Log("GetVideoHeight" + media.Info.GetVideoHeight());
+
     }
 
     /// <summary>
