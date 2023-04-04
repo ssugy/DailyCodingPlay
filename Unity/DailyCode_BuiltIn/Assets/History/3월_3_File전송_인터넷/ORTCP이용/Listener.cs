@@ -36,7 +36,7 @@ public class Listener : MonoBehaviour
     }
 
     ///// ORTCP 기능확인
-    public ORTCPServer server;
+    public ORTCPMultiServer multiServer;
 
     private void Start()
     {
