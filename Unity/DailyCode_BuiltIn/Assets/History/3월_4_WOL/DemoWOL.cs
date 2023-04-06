@@ -4,6 +4,7 @@ using System.Net.Sockets;
 
 public class DemoWOL : MonoBehaviour
 {
+    [Tooltip("W키를 누르면 실행됩니다.")]
     public byte[] m_MacAddress; // 6자리 물리적 주소(맥어드레스)를 넣으면 됩니다.
 
     void Update()

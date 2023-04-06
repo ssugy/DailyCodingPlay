@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c696e4348cbf35747980584bbeccc474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileUpload: {fileID: 1948302589}
   multiServer: {fileID: 1310980366}
 --- !u!1 &443920679
 GameObject:
@@ -413,6 +414,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 260059464}
+  - {fileID: 1948302588}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -595,8 +597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185f9feb5b6de1d4ca57bddb7f60dcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn: {fileID: 2133974137}
   multiServer: {fileID: 1310980366}
+  btn: {fileID: 2133974137}
 --- !u!1 &1656519803
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +683,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1948302587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1948302588}
+  - component: {fileID: 1948302589}
+  m_Layer: 0
+  m_Name: DemoFileUpload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1948302588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948302587}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1310980367}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1948302589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948302587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb381515a987a104f9a94715281dfcea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Ip: 127.0.0.1
+  m_Port: 50001
+  uploadFileName: 
+  m_UploadFilePaths: []
 --- !u!1 &2027165191
 GameObject:
   m_ObjectHideFlags: 0
