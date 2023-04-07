@@ -24,38 +24,48 @@ public class LEDFileCheckServer : MonoBehaviour
         public int userSortNum;         // 사용자가 지정한 순서
         public string VideoStartTime;   // HH:MM
         public string fileName;
+        public FileType fileType;
         public string fileFullPath;
         public int byteFileSize;
         public float vertNormal;
 
-        public LEDProtocal(int originNum, int userNum, string videoStartTime, string mFileName, string mFileFullPath, int mByteFileSize, float normal = 0.5f)
+        public LEDProtocal(int originNum, int userNum, string videoStartTime, string mFileName, FileType type, string mFileFullPath, int mByteFileSize, float normal = 0.5f)
         {
             originSortNum = originNum;
             userSortNum= userNum;
             VideoStartTime= videoStartTime;
             fileName = mFileName;
+            fileType = type;
             fileFullPath = mFileFullPath;
             byteFileSize= mByteFileSize;
             vertNormal= normal;
         }
 
-        public override string ToString() => $"{VideoStartTime},{fileName},{byteFileSize},{vertNormal}";
-        public void ShowAll() => Debug.Log($"{originSortNum},{userSortNum},{VideoStartTime},{fileName},{byteFileSize},{vertNormal}");
+        public override string ToString() => $"{VideoStartTime},{fileName},{fileType},{byteFileSize},{vertNormal}";
+        public void ShowAll() => Debug.Log($"{originSortNum},{userSortNum},{VideoStartTime},{fileName},{fileType},{byteFileSize},{vertNormal}");
     }
-    private enum ProtocalType
+    // 
+    private enum ToClientProtocal
     {
         None,
-        LEDFileList,
+        CheckLEDFileList,
     }
+    // 클라이언트에서 서버로 보낼 때 프로토콜의 타입(파일요청이냐, 다른것이냐 기타 등등.)
     public enum ToServerProtocal
     {
         None,
         RequestFile,
     }
+    // 파일타입
+    public enum FileType
+    {
+        Video,
+        Img
+    }
 
     private List<LEDProtocal> originList;
     private List<LEDProtocal> sortedList;
-    private bool isFulRepeat;
+    public bool isFulRepeat;
 
     public ORTCPMultiServer multiServer;
     public Button btn;
@@ -66,14 +76,14 @@ public class LEDFileCheckServer : MonoBehaviour
         // Json으로 가져오기 - 사용자가 선택하면 바꿀 수 있어야 함.
         originList = new List<LEDProtocal>
         {
-            new LEDProtocal(1, 1, "19:00", "test.png"         , Application.dataPath + "\\tmp\\" + "test.png"           , 10000000),
-            new LEDProtocal(2, 3, "18:00", "Video.mp4"        , Application.dataPath + "\\tmp\\" + "Video.mp4"          , 20000000),
-            new LEDProtocal(3, 2, "15:00", "시퀀스 06_1.mp4"  , Application.dataPath + "\\tmp\\" + "시퀀스 06_1.mp4"    , 30000000),
-            new LEDProtocal(4, 6, "13:00", "자산 49@2x.png"   , Application.dataPath + "\\tmp\\" + "자산 49@2x.png"     , 30000000),
-            new LEDProtocal(5, 5, "11:00", "자산 50@2x.png"   , Application.dataPath + "\\tmp\\" + "자산 50@2x.png"     , 30000000),
-            new LEDProtocal(6, 4, "15:00", "자산 51@2x.png"   , Application.dataPath + "\\tmp\\" + "자산 51@2x.png"     , 30000000),
-            new LEDProtocal(5, 4, "15:00", "자산 64@2x.png"   , Application.dataPath + "\\tmp\\" + "자산 64@2x.png"     , 30000000),
-            new LEDProtocal(5, 4, "15:00", "자산 67@2x.png"   , Application.dataPath + "\\tmp\\" + "자산 67@2x.png"     , 30000000)
+            new LEDProtocal(1, 1, "19:00", "test.png"       ,FileType.Img   , Application.dataPath + "\\tmp\\" + "test.png"           , 10000000, 0.5f),
+            new LEDProtocal(2, 2, "18:00", "시퀀스 06.mp4"  ,FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06.mp4"      , 20000000, 0.5f),
+            new LEDProtocal(3, 3, "15:00", "시퀀스 06_1.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_1.mp4"    , 30000000, 0.7f),
+            new LEDProtocal(4, 4, "13:00", "시퀀스 06_2.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_2.mp4"    , 30000000, 0.3f),
+            new LEDProtocal(5, 5, "11:00", "시퀀스 06_3.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_3.mp4"    , 30000000, 0.6f),
+            new LEDProtocal(6, 4, "15:00", "자산 51@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 51@2x.png"     , 30000000, 0.5f),
+            new LEDProtocal(5, 4, "15:00", "자산 64@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 64@2x.png"     , 30000000, 0.5f),
+            new LEDProtocal(5, 4, "15:00", "자산 67@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 67@2x.png"     , 30000000, 0.5f)
         }; 
 
         // 정렬은 링큐로 한번에 정렬
@@ -91,7 +101,7 @@ public class LEDFileCheckServer : MonoBehaviour
     // LEDFileList|true|3|a,s,d|a,s,d|a,s,d 이런식으로 리턴함.
     private string GetLEDSendMessage(List<LEDProtocal> resultArr)
     {
-        string result = Enum.GetName(typeof(ProtocalType), ProtocalType.LEDFileList) + "|"; // 첫번째에 신호의 종류 보내고
+        string result = Enum.GetName(typeof(ToClientProtocal), ToClientProtocal.CheckLEDFileList) + "|"; // 첫번째에 신호의 종류 보내고
         result += isFulRepeat + "|";           // 두번째 블럭은 isfullRepeat
         result += resultArr.Count + "|";           // 세번째 블럭은 리스트의 길이
         for (int i = 0; i < resultArr.Count; i++)  // 네번째 블럭은 각각의 구조체의 요소들
@@ -102,6 +112,7 @@ public class LEDFileCheckServer : MonoBehaviour
                 result += "|";
             }
         }
+        Debug.Log(result);
         return result;
     }
 

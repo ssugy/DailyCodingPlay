@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c696e4348cbf35747980584bbeccc474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileUpload: {fileID: 1948302589}
   multiServer: {fileID: 1310980366}
 --- !u!1 &443920679
 GameObject:
@@ -597,6 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185f9feb5b6de1d4ca57bddb7f60dcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFulRepeat: 1
   multiServer: {fileID: 1310980366}
   btn: {fileID: 2133974137}
 --- !u!1 &1656519803
