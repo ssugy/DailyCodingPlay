@@ -70,27 +70,28 @@ public class LEDFileCheckServer : MonoBehaviour
     public ORTCPMultiServer multiServer;
     public Button btn;
 
+    // 스타트단에서 결정을 했기 때문에 링큐 적용이 안되는 것 처럼 보였던 것이다.
     private void Start()
     {
         btn.onClick.AddListener(CheckLEDListFile);
         // Json으로 가져오기 - 사용자가 선택하면 바꿀 수 있어야 함.
         originList = new List<LEDProtocal>
         {
-            new LEDProtocal(1, 1, "19:00", "test.png"       ,FileType.Img   , Application.dataPath + "\\tmp\\" + "test.png"           , 10000000, 0.5f),
-            new LEDProtocal(2, 2, "18:00", "시퀀스 06.mp4"  ,FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06.mp4"      , 20000000, 0.5f),
-            new LEDProtocal(3, 3, "15:00", "시퀀스 06_1.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_1.mp4"    , 30000000, 0.7f),
-            new LEDProtocal(4, 4, "13:00", "시퀀스 06_2.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_2.mp4"    , 30000000, 0.3f),
-            new LEDProtocal(5, 5, "11:00", "시퀀스 06_3.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_3.mp4"    , 30000000, 0.6f),
-            new LEDProtocal(6, 4, "15:00", "자산 51@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 51@2x.png"     , 30000000, 0.5f),
-            new LEDProtocal(5, 4, "15:00", "자산 64@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 64@2x.png"     , 30000000, 0.5f),
-            new LEDProtocal(5, 4, "15:00", "자산 67@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 67@2x.png"     , 30000000, 0.5f)
-        }; 
+            new LEDProtocal(1, 1, "12:00", "test.png"       ,FileType.Img   , Application.dataPath + "\\tmp\\" + "test.png"           , 10000000, 0.5f),
+            new LEDProtocal(2, 2, "11:28", "시퀀스 06.mp4"  ,FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06.mp4"      , 20000000, 0.5f),
+            new LEDProtocal(3, 3, "02:00", "시퀀스 06_1.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_1.mp4"    , 30000000, 0.5f),
+            new LEDProtocal(4, 4, "03:00", "시퀀스 06_2.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_2.mp4"    , 30000000, 0.5f),
+            new LEDProtocal(5, 5, "04:00", "시퀀스 06_3.mp4",FileType.Video , Application.dataPath + "\\tmp\\" + "시퀀스 06_3.mp4"    , 30000000, 0.5f),
+            new LEDProtocal(6, 4, "05:00", "자산 51@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 51@2x.png"     , 30000000, 0.5f),
+            new LEDProtocal(5, 4, "06:00", "자산 64@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 64@2x.png"     , 30000000, 0.5f),
+            new LEDProtocal(5, 4, "07:00", "자산 67@2x.png" ,FileType.Img   , Application.dataPath + "\\tmp\\" + "자산 67@2x.png"     , 30000000, 0.5f)
+        };
 
         // 정렬은 링큐로 한번에 정렬
-        if (isFulRepeat) 
+        if (isFulRepeat)
             sortedList = originList.OrderBy(x => x.userSortNum).ThenBy(x => x.originSortNum).ToList();
         else
-            sortedList= originList.OrderBy(x => x.VideoStartTime).ThenBy(x => x.originSortNum).ToList();
+            sortedList = originList.OrderBy(x => x.VideoStartTime).ThenBy(x => x.originSortNum).ToList();
 
         foreach (var item in sortedList)
         {
@@ -118,7 +119,6 @@ public class LEDFileCheckServer : MonoBehaviour
 
     private void CheckLEDListFile()
     {
-        Debug.Log("데이터 전송 : " + GetLEDSendMessage(sortedList));
         multiServer.SendAll(GetLEDSendMessage(sortedList));
     }
 

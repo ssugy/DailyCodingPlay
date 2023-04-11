@@ -596,7 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 185f9feb5b6de1d4ca57bddb7f60dcbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFulRepeat: 1
+  isFulRepeat: 0
   multiServer: {fileID: 1310980366}
   btn: {fileID: 2133974137}
 --- !u!1 &1656519803
