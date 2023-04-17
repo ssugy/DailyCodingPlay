@@ -44,40 +44,4 @@ public class Listener : MonoBehaviour
                 break;
         }
     }
-
-    public void OnClientConnect(ORTCPEventParams eventParams)
-    {
-        Debug.Log("OnClientConnect 데이터");
-    }
-
-    public void OnClientDisconnect(ORTCPEventParams eventParams)
-    {
-        Debug.Log("OnClientDisconnect 데이터");
-    }
-
-    public void OnClientConnectionRefused(ORTCPEventParams eventParams)
-    {
-        Debug.Log("OnClientConnectionRefused 데이터");
-    }
-
-    ///// ORTCP 기능확인
-    public ORTCPMultiServer multiServer;
-    
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            //Debug.Log("1번키 누름");
-            //byte[] bytes = new byte[5000];
-            //bytes.SetValue((byte)1, 0);
-            //Debug.Log(bytes[500]);
-            //server.SendBytes(bytes);
-        }
-    }
 }
