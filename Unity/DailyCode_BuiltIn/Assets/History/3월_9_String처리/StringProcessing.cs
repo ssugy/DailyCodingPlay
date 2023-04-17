@@ -15,15 +15,21 @@ public class StringProcessing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             sample.transform.Translate(Vector2.left * Time.deltaTime * speed);
             Debug.Log(bgImg.rectTransform.rect.Contains((Vector2)sample.rectTransform.localPosition + sample.rectTransform.rect.max));
         }
-        else if (Input.GetKey(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             sample.transform.Translate(Vector2.right * Time.deltaTime * speed);
             Debug.Log(bgImg.rectTransform.rect.Contains((Vector2)sample.rectTransform.localPosition + sample.rectTransform.rect.max));
+        }else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            string tmp = "test";
+            string tmp2 = "test.png";
+            Debug.Log(tmp.Split('.').Length);
+            Debug.Log(tmp2.Split('.').Length);
         }
     }
 }

@@ -18,7 +18,6 @@ public class LEDFileCheckServer : MonoBehaviour
     /// LED Protocal 개별 요소는 ,로 구분하고 LED Protocal 자체의 구분은 |로 구분한다.
     /// 최종 순서를 정리해서, Client한테 보낸다.
     /// </summary>
-    [Serializable]
     public struct LEDProtocal
     {
         public int originSortNum;       // 리스트에 있는 영상의 순서(물리적 순서)
@@ -79,13 +78,13 @@ public class LEDFileCheckServer : MonoBehaviour
         originList = new List<LEDProtocal>
         {
             new LEDProtocal(1, 1, "12:00", "test.png"       ,FileType.Img   , Application.dataPath + "/tmp/" + "test.png"           , 10000000, 0.1f),
-            new LEDProtocal(2, 2, "11:28", "시퀀스 06.mp4"  ,FileType.Video , Application.dataPath + "/tmp/" + "시퀀스 06.mp4"      , 20000000, 0.2f),
+            new LEDProtocal(2, 2, "10:07", "시퀀스 06.mp4"  ,FileType.Video , Application.dataPath + "/tmp/" + "시퀀스 06.mp4"      , 20000000, 0.2f),
             new LEDProtocal(3, 3, "02:00", "시퀀스 06_1.mp4",FileType.Video , Application.dataPath + "/tmp/" + "시퀀스 06_1.mp4"    , 30000000, 0.3f),
             new LEDProtocal(4, 4, "03:00", "시퀀스 06_2.mp4",FileType.Video , Application.dataPath + "/tmp/" + "시퀀스 06_2.mp4"    , 30000000, 0.4f),
             new LEDProtocal(5, 5, "04:00", "시퀀스 06_3.mp4",FileType.Video , Application.dataPath + "/tmp/" + "시퀀스 06_3.mp4"    , 30000000, 0.5f),
             new LEDProtocal(6, 4, "05:00", "자산 51@2x.png" ,FileType.Img   , Application.dataPath + "/tmp/" + "자산 51@2x.png"     , 30000000, 0.6f),
             new LEDProtocal(5, 4, "06:00", "자산 64@2x.png" ,FileType.Img   , Application.dataPath + "/tmp/" + "자산 64@2x.png"     , 30000000, 0.7f),
-            new LEDProtocal(5, 4, "07:00", "자산 67@2x.png" ,FileType.Img   , Application.dataPath + "/tmp/" + "자산 67@2x.png"     , 30000000, 0.8f)
+            new LEDProtocal(5, 4, "10:00", "자산 67@2x.png" ,FileType.Img   , Application.dataPath + "/tmp/" + "자산 67@2x.png"     , 30000000, 0.8f)
         };
 
         // 정렬은 링큐로 한번에 정렬
