@@ -30,7 +30,7 @@ public class Listener : MonoBehaviour
                 break;
             case "RequestMissingFile":
                 Debug.Log($"파일요청이 들어옴 {eventParams.socket.Client.RemoteEndPoint.ToString()}");
-                fileTransfer = new FileTransfer(50001,FileTransfer.ETransfer.Upload, eventParams.socket.Client.RemoteEndPoint.ToString().Split(':')[0]);
+                fileTransfer = new FileTransfer(50001, FileTransfer.ETransfer.Upload, eventParams.socket.Client.RemoteEndPoint.ToString().Split(':')[0]);
 
                 string[] tmpList = msg.Split('|');
                 string[] fileList = new string[tmpList.Length -1];  // 맨앞제거한 리스트를 얻기 위해서 크기 1개 줄임
