@@ -8,7 +8,7 @@ namespace BasicProject._01._CallBack_Check
 {
     internal class MyMainFunc
     {
-        public static void Main()
+        public static void _Main()
         {
             MyCallBack myCallBack = new MyCallBack();
             MyDosomething myDosomething = new MyDosomething();
