@@ -5,7 +5,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class ORTCPMultiServer : MonoBehaviour {
 	
@@ -191,27 +190,8 @@ public class ORTCPMultiServer : MonoBehaviour {
 		return null;
 		
 	}
-
-    private ORTCPClient GetClient(string clientIP)
-    {
-
-        ORTCPClient client = null;
-
-		foreach (KeyValuePair<int, ORTCPClient> pair in _clients)
-		{
-			Debug.Log($"값 확인 : {pair.Value.tcpClient.Client.RemoteEndPoint.ToString().Split(':')[0]}");
-			if (pair.Value.tcpClient.Client.RemoteEndPoint.ToString().Split(':')[0].Equals(clientIP))
-			{
-				Debug.Log("일치 확인");
-				return pair.Value;
-			}
-		}
-
-        return null;
-
-    }
-
-    private int GetClientID(ORTCPClient client) {
+	
+	private int GetClientID(ORTCPClient client) {
 		
 		foreach (KeyValuePair<int, ORTCPClient> entry in _clients)
 			if (entry.Value == client)
@@ -349,18 +329,8 @@ public class ORTCPMultiServer : MonoBehaviour {
 		if (client == null)
 			return;
 
-		client.Send(message);	
+		client.Send(message);
+		
 	}
-
-    public void Send(string clientIP, string message)
-    {
-		Debug.Log("서버 send 실행 : " + message);
-        ORTCPClient client = GetClient(clientIP);
-
-        if (client == null)
-            return;
-
-        client.Send(message);
-    }
-
+	
 }
