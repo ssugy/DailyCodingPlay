@@ -194,7 +194,6 @@ public class ORTCPMultiServer : MonoBehaviour {
 
     private ORTCPClient GetClient(string clientIP)
     {
-
         ORTCPClient client = null;
 
 		foreach (KeyValuePair<int, ORTCPClient> pair in _clients)
@@ -208,7 +207,6 @@ public class ORTCPMultiServer : MonoBehaviour {
 		}
 
         return null;
-
     }
 
     private int GetClientID(ORTCPClient client) {
