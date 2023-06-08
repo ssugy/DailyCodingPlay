@@ -10,7 +10,7 @@ public class ColorPickerExampleCustom : MonoBehaviour
         r = GetComponent<Renderer>();
         r.sharedMaterial = r.material;
 
-        // 최초 생성할 때, setColor로 값을 전달함.
+        // 최초 생성할 때, setColor로 값을 전달함. 컬러피커의 점을 움직여도 매 프레임마다 SetColor함수가 호출됨
         ColorPicker.Create(Color.red, "Choose the cube's color!", SetColor, ColorFinished, true);
         ColorPicker.Done(); // 닫기 버튼 실행(꺼두기)
     }
@@ -30,5 +30,10 @@ public class ColorPickerExampleCustom : MonoBehaviour
     {
         Debug.Log("컬러 피니시드");
         Debug.Log("You chose the color " + ColorUtility.ToHtmlStringRGBA(finishedColor));
+    }
+
+    public void SetColorChange()
+    {
+        ColorPicker.TESTSetColorManager();
     }
 }

@@ -1,0 +1,52 @@
+{
+	"Datas":
+	[
+		{
+			"Id":"LaySeat",
+			"Protocal":"SANE",
+			"Resending":false,
+			"IsSendingProtocal":true,
+			"Delays":[5000]
+		},
+		{
+			"Id":"StandUpSeat",
+			"Protocal":"SAFE",
+			"Resending":false,
+			"IsSendingProtocal":true,
+			"Delays":[0, 6000]
+		},
+		{
+			"Id":"StopSeat",
+			"Protocal":"S01E",
+			"Resending":false,
+			"IsSendingProtocal":false
+		},
+		{
+			"Id":"OccuredStrangeSignal",
+			"Protocal":"S02E",
+			"Resending":false
+		},
+		{
+			"Id":"StartVibration",
+			"Protocal":"S03E",
+			"Resending":false,
+			"IsSendingProtocal":true,
+			"Delays":[7000, 9000]
+		},
+		{
+			"Id":"StopVibration",
+			"Protocal":"S04E",
+			"Resending":false,
+			"IsSendingProtocal":true,
+			"Delays":[8000, 10000]
+		},
+		{
+			"Id":"TurnOnLight",
+			"Protocal":"S05E"
+		},
+		{
+			"Id":"TurnOffLight",
+			"Protocal":"S06E"
+		}
+	]
+}

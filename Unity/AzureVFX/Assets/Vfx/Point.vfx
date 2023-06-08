@@ -103,10 +103,10 @@ MonoBehaviour:
   - title: Attribute Map Samples
     position:
       serializedVersion: 2
-      x: -247
-      y: 540
-      width: 874
-      height: 338
+      x: -230
+      y: 502
+      width: 858
+      height: 378
     contents:
     - model: {fileID: 8926484042661614970}
       id: 0
@@ -132,16 +132,29 @@ MonoBehaviour:
     - model: {fileID: 8926484042661614941}
       id: 0
       isStickyNote: 0
-  stickyNoteInfos: []
+  stickyNoteInfos:
+  - title: "\uC6A9\uC5B4 \uC815\uB9AC"
+    position:
+      serializedVersion: 2
+      x: -101
+      y: 371
+      width: 246
+      height: 100
+    contents: "1. Modulo : \uB098\uBA38\uC9C0 \uC5F0\uC0B0\uC790\n2. Divide : \uBAAB\uC744
+      \uACC4\uC0B0\uD558\uB294 \uC5F0\uC0B0\uC790\n3. Get Attribute : ParticleID
+      : \uD604\uC7AC \uD654\uBA74 \uB300\uBE44\uD574\uC11C \uACE0\uC720\uD55C \uC544\uC774\uB514\uB97C
+      \uC54C\uB824\uC900\uB2E4."
+    theme: Classic
+    textSize: Small
   categories:
   - name: Akvfx
     collapsed: 0
   uiBounds:
     serializedVersion: 2
-    x: -247
+    x: -230
     y: -146
-    width: 1465
-    height: 1561
+    width: 1448
+    height: 1541
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1266,7 +1279,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614689}
       inputSlot: {fileID: 8926484042661614942}
-    position: {x: 145, y: 620}
+    position: {x: 132, y: 593.60004}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614689
@@ -1346,7 +1359,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614691}
       inputSlot: {fileID: 8926484042661614959}
-    position: {x: 147, y: 802}
+    position: {x: 147.2, y: 802.4}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614691
@@ -1694,7 +1707,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614975}
     - outputSlot: {fileID: 8926484042661614905}
       inputSlot: {fileID: 8926484042661614982}
-    position: {x: -98, y: 745}
+    position: {x: -126.4, y: 752}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614905
@@ -1934,7 +1947,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 358, y: 600}
+  m_UIPosition: {x: 363, y: 562}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2269,7 +2282,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 354, y: 723}
+  m_UIPosition: {x: 352, y: 723}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2438,7 +2451,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614966}
   - {fileID: 8926484042661614967}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661614963}
   m_MasterData:
@@ -2605,7 +2618,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -222, y: 700}
+  m_UIPosition: {x: -204, y: 630}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -2665,7 +2678,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 125, y: 704}
+  m_UIPosition: {x: 127, y: 703}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -2797,7 +2810,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 127, y: 747}
+  m_UIPosition: {x: 127, y: 751}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:

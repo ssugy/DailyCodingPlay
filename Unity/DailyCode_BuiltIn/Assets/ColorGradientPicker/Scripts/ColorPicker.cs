@@ -343,5 +343,13 @@ public class ColorPicker : MonoBehaviour
                     return new Color32();
             }
         }
+
+        
+    }
+
+    //---------- 함수 추가
+    public static void TESTSetColorManager()
+    {
+        instance.SetHexa("111111FF");
     }
 }

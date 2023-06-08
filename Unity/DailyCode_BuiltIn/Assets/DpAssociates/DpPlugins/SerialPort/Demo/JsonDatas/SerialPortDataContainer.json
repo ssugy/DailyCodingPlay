@@ -1,0 +1,33 @@
+{
+    "Datas": [{
+            "Id": 0,
+            "PortName": "COM2",
+            "BaudRate": 9600,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "BufferMaxNum": 3,
+            "ByteConvertingType": "Hex",
+            "ReadTimeout": 500,
+            "WriteTimeout": 500,
+            "IsResending": true,
+            "IsAutoFlushBuffer": true,
+			"IsOriginalResending":true
+        }, {
+            "Id": 1,
+            "PortName": "COM3",
+            "BaudRate": 9600,
+            "Parity": "None",
+            "DataBits": 8,
+            "StopBits": "One",
+            "BufferMaxNum": 4,
+            "ByteConvertingType": "String",
+            "ReadTimeout": 500,
+            "WriteTimeout": 500,
+            "IsResending": false,
+            "IsAutoFlushBuffer": true,
+			"IsOriginalResending":false
+        }
+    ]
+
+}
