@@ -29,12 +29,13 @@ public sealed class DeviceController : MonoBehaviour
     #region Private members
 
     ThreadedDriver _driver;
-    ComputeBuffer _xyTable;
+    ComputeBuffer _xyTable;         // computeBuffer는 ComputeShader용 버퍼의 역할을 한다.
     ComputeBuffer _colorBuffer;
     ComputeBuffer _depthBuffer;
     RenderTexture _colorMap;
     RenderTexture _positionMap;
 
+    // 외부에서 가져온 DeviceSettings라는 스크립터블 오브젝트를 가져와서 데이터를 초기화 한다.
     void SetDeviceSettings(DeviceSettings settings)
     {
         _deviceSettings = settings;
@@ -94,6 +95,7 @@ public sealed class DeviceController : MonoBehaviour
         _driver?.Dispose();
     }
 
+    // unsafe붙은 것은 포인터를 통해서 값을 받는것이라서 안정성을 보장 못하기 때문이다.
     unsafe void Update()
     {
         // Try initializing XY table if it's not ready.
@@ -118,6 +120,8 @@ public sealed class DeviceController : MonoBehaviour
         // We don't need the last frame any more.
         _driver.ReleaseLastFrame();
 
+        // 컴퓨터 쉐이더에 마지막 프레임의 값을 지정한다.
+        // ID.로 지정된 쉐이더와 연결된 값에 마지막 프레임에서 추출한 값들을 지정하는 코드이다.
         // Invoke the unprojection compute shader.
         _compute.SetFloat(ID.MaxDepth, _deviceSettings.maxDepth);
         _compute.SetBuffer(0, ID.ColorBuffer, _colorBuffer);
@@ -125,7 +129,9 @@ public sealed class DeviceController : MonoBehaviour
         _compute.SetBuffer(0, ID.XYTable, _xyTable);
         _compute.SetTexture(0, ID.ColorMap, _colorMap);
         _compute.SetTexture(0, ID.PositionMap, _positionMap);
-        _compute.Dispatch(0, _colorMap.width / 8, _colorMap.height / 8, 1);
+        _compute.Dispatch(0, _colorMap.width / 8, _colorMap.height / 8, 1);     // 지정한 값을 실행(Excute)한다.
+
+
     }
 
     #endregion

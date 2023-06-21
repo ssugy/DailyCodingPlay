@@ -40,6 +40,7 @@ sealed class VFXPointCloudBinder : VFXBinderBase
 
     public DeviceController Target = null;
 
+    // 들어온 값의 타입이 적절한지 검사하는 용도
     public override bool IsValid(VisualEffect component)
       => Target != null &&
          component.HasTexture(_colorMapProperty) &&

@@ -26,8 +26,8 @@ namespace DpPlugin
             this.protocalDataContainer = protocalDataContainer;
             this.serialPortData = serialPortData;
 
-            serialPortWorker = new SerialPortWorker(this);
-            serialPortWorker.Open(serialPortData);          // 여기서 실제로 시리얼포트 연결을 시도한다.
+            //serialPortWorker = new SerialPortWorker(this);
+            //serialPortWorker.Open(serialPortData);          // 여기서 실제로 시리얼포트 연결을 시도한다.
             OldId = CurrentId = (T)Enum.Parse(typeof(T), "None");   // None 상태로 초기화
         }
 
@@ -109,13 +109,13 @@ namespace DpPlugin
             }
             else
             {
-                serialPortWorker.Send(protocalData.Protocal);
+                //serialPortWorker.Send(protocalData.Protocal);
             }
         }
 
         private void sendBytes(byte[] bytes)
         {
-            serialPortWorker.Send(bytes);
+            //serialPortWorker.Send(bytes);
             //logBytes(100, bytes);
         }
 
@@ -146,11 +146,11 @@ namespace DpPlugin
             {
                 if (serialPortData.IsOriginalResending)
                 {
-                    serialPortWorker.Send(bytes);
+                    //serialPortWorker.Send(bytes);
                 }
                 else
                 {
-                    serialPortWorker.Send(protocalData.ReceivedData);
+                    //serialPortWorker.Send(protocalData.ReceivedData);
                 }
             }
 
@@ -188,7 +188,7 @@ namespace DpPlugin
 
         public void OnApplicationQuit()
         {
-            serialPortWorker?.Close();
+            //serialPortWorker?.Close();
         }
 
         private void logBytes(int id, byte[] bytes)
