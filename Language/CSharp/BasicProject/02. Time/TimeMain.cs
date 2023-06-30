@@ -8,7 +8,7 @@ namespace BasicProject._02._Time
 {
     internal class TimeMain
     {
-        public static void Main(string[] args)
+        public static void _Main(string[] args)
         {
             Console.WriteLine($"{DateTime.Now.ToString("yyyy MM dd"+"/"+"dd")}");
             Console.WriteLine($"{DateTime.Now.ToString("//")}");
