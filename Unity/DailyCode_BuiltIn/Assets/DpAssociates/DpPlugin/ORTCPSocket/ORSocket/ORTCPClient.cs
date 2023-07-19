@@ -197,7 +197,7 @@ public class ORTCPClient : MonoBehaviour {
 			
 			_events.Enqueue(ORTCPEventType.ConnectionRefused);
 
-			Debug.LogError("Connect Exception: " + e.Message);
+			Debug.LogWarning("Connect Exception: " + e.Message);
 			
         }
 		

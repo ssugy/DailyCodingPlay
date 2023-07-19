@@ -12,7 +12,7 @@ public class DemoFileUpload : MonoBehaviour
     {
         m_FileTransfer = new FileTransfer(m_Port, FileTransfer.ETransfer.Upload, m_Ip);
         m_UploadFilePaths = new string[1];
-        m_UploadFilePaths[0] = Application.dataPath + "/tmp/test.png";
+        m_UploadFilePaths[0] = Application.dataPath + "/tmp/img_2.png";
     }
 
     void Update()
