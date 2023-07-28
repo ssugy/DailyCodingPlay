@@ -4,7 +4,7 @@ namespace BasicProject._04._Command
 {
     internal class CommandTEST
     {
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             string command = "dir"; // Replace "dir" with your desired command
             RunCommand(command);

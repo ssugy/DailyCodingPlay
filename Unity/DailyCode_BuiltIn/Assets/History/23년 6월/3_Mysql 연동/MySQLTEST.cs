@@ -9,7 +9,16 @@ public class MySQLTEST : MonoBehaviour
 {
     private MySqlConnection SqlConn;
 
-    private string ipAdress = "127.0.0.1";
+    // 만약 원격으로 접속을 하기를 원한다면, MySQL내부에서 원격접속이 가능하게 user의 권한을 변경해야 한다.
+    /*
+`       select * from mysql.user;
+`       CREATE USER 'root'@'%' identified by '비밀번호기입';
+`       GRANT ALL PRIVILEGES ON *.* to 'root'@'%';
+`       flush privileges;
+     */
+    // 위의 내용은, 동일한 root이름의 유저를 만들어서, host를 %로 변경하는 쿼리입니다. 모든 경로에서 접속이 가능합니다.
+    private string ipAdress = "192.168.0.58";
+    private string port = "3306";
     private string dbID = "root";
     private string dbPW = "1234";
     private string dbName = "sakila";
@@ -18,7 +27,7 @@ public class MySQLTEST : MonoBehaviour
 
     private void Awake()
     {
-        strConn = $"server={ipAdress};uid={dbID};pwd={dbPW};charset=utf8;";
+        strConn = $"server={ipAdress};Port={port};uid={dbID};pwd={dbPW};charset=utf8;";
 
         try
         {
@@ -32,12 +41,25 @@ public class MySQLTEST : MonoBehaviour
 
     private void Start()
     {
-        string query = "select * from actor";
+        string query = $"use {dbName}; select * from actor;";
         DataSet ds = OnSelectRequest(query, "actor");
 
-        Debug.Log(ds.GetXml()); // 결과물 확인
+        // XML형태로 결과물 보기
+        //Debug.Log(ds.GetXml());
+
+        // row단위로 결과물 보기.
+        foreach (DataRow item in ds.Tables[0].Rows)
+        {
+            Debug.Log("데이터 로우 : " + item["first_name"]);
+        }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="query">쿼리</param>
+    /// <param name="tableName">테이블명</param>
+    /// <returns></returns>
     private DataSet OnSelectRequest(string query, string tableName)
     {
         try
@@ -48,6 +70,7 @@ public class MySQLTEST : MonoBehaviour
             cmd.Connection = SqlConn;
             cmd.CommandText = query;
 
+            // adapter방식으로 데이터 가져옴.
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             DataSet ds = new DataSet();
             adapter.Fill(ds, tableName);
