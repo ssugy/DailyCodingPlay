@@ -17,7 +17,7 @@ public class MySQLTEST : MonoBehaviour
 `       flush privileges;
      */
     // 위의 내용은, 동일한 root이름의 유저를 만들어서, host를 %로 변경하는 쿼리입니다. 모든 경로에서 접속이 가능합니다.
-    private string ipAdress = "192.168.0.58";
+    private string ipAdress = "192.168.0.243";
     private string port = "3306";
     private string dbID = "root";
     private string dbPW = "1234";

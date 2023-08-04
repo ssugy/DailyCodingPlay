@@ -4,9 +4,19 @@ namespace BasicProject._04._Command
 {
     internal class CommandTEST
     {
-        static void _Main(string[] args)
+        static void Main(string[] args)
         {
-            string command = "dir"; // Replace "dir" with your desired command
+            //string command = "shutdown -r -f -t 0";
+            //string command = "dir"; // Replace "dir" with your desired command
+            /**
+             * tn : task name (스케줄러 이름 - 고유해야됨)
+             * tr : task run (실행 할 프로그램)
+             * sc : schedule (일정 빈도 지정 - daily, weekly, monthly, once..)
+             * st : start time (시작시간)
+             * ed : end date (종료 날짜, once에서는 하면안됨.)
+             * F : 지정된 작업이 존재하는 경우 작업을 강제로 만듬
+             */
+            string command = "schtasks /create /tn \"sample\" /tr C:\\Users\\DevYH\\Pictures\\test\\BasicProject.exe /sc daily /st 15:59 /ed 2023/08/10 /F";
             RunCommand(command);
         }
 

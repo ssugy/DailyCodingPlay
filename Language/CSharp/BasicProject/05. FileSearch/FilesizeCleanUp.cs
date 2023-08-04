@@ -16,7 +16,7 @@ namespace BasicProject._05._FileSearch
         static string folderPath = "C:\\Users\\DevYH\\Pictures\\인제 기적의 도서관";
         static long fileSizeCutLine = 1024 * 50;    // 기준이 되는 파일 사이즈
 
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Console.WriteLine("파일사이즈 " + GetDirectorySize(folderPath));
         }

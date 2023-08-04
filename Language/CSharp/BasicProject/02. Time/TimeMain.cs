@@ -12,6 +12,7 @@ namespace BasicProject._02._Time
         {
             Console.WriteLine($"{DateTime.Now.ToString("yyyy MM dd"+"/"+"dd")}");
             Console.WriteLine($"{DateTime.Now.ToString("//")}");
+            Console.ReadLine();
         }
     }
 }

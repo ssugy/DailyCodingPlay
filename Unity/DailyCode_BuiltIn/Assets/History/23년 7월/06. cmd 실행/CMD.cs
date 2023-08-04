@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
+
+public enum Schedule
+{
+    Disable,        // 스케줄 사용하지 않음
+    Daily,          // 1일단위 반복
+    Weekly,         // 주단위 반복
+    Once
+}
+
 public class CMD : MonoBehaviour
 {
     private static void ExcuteCMD(string command)
@@ -41,5 +50,13 @@ public class CMD : MonoBehaviour
     }
 
     // 스케줄러 설정 실행
-
+    /**
+    * tn : task name (스케줄러 이름 - 고유해야됨)
+    * tr : task run (실행 할 프로그램)
+    * sc : schedule (일정 빈도 지정 - daily, weekly, monthly, once..)
+    * st : start time (시작시간)
+    * ed : end date (종료 날짜, once에서는 하면안됨.)
+    * F : 지정된 작업이 존재하는 경우 작업을 강제로 만듬
+    */
+    
 }
