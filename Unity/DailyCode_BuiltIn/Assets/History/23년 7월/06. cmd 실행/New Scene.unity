@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 1106067681}
   - component: {fileID: 1106067682}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CMD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1106067680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8141b3db618c1e64ba13d014412e5bd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d0952bb0801d384b80080f5602174fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1453203518
