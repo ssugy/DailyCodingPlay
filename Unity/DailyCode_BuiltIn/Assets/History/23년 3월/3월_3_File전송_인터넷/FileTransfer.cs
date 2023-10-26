@@ -157,7 +157,7 @@ public class FileTransfer
         {
             case ETransfer.Download:    // 내려받는 것. (어디서든 받을 수 있음)
                 point = new IPEndPoint(IPAddress.Any, port);
-                TCP_Listener = new TcpListener(point);
+                TCP_Listener = new TcpListener(point);  // 내부 tcp용 리스너
                 m_Thread = new Thread(ThrdTcpReceive);
                 break;
 
@@ -273,6 +273,8 @@ public class FileTransfer
                     fileStream.Write(buffers, 0, receiveSize);
                     downloadSize += receiveSize;
                     eventData.Percent = ((double)downloadSize / (double)fileTransferPacket.FileSize) * 100.0;
+
+                    // 여기는 다운로드용 퍼센트 지정이다.
                 }
 
                 downloadSize = 0;
@@ -330,12 +332,14 @@ public class FileTransfer
                     buffers = FileTransferPacket.Serialize(fileTransferPacket);
                     binaryWriter.Write(buffers);
 
+                    // 여기서 반복 - 실제 보내는 것?
                     while (buffers.Length > 0)
                     {
                         buffers = binaryReader.ReadBytes(1024);
                         binaryWriter.Write(buffers);
                         uploadSize += buffers.Length;
                         eventData.Percent = ((double)uploadSize / (double)fileTransferPacket.FileSize) * 100.0;
+                        Debug.Log("업로드 퍼센트 " + eventData.Percent);
                     }
                     uploadSize = 0;
 

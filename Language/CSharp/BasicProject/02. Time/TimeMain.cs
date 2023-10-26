@@ -30,6 +30,9 @@ namespace BasicProject._02._Time
             Console.WriteLine((int)Enum.Parse(typeof(DayOfWeek), "Monday"));
 
             // 특정 요일을 주어졌을 때, 해당 요일에 해당하는 날짜 구하기
+            DateTime tmpDate = new DateTime(2023,8,28,3,3,4);
+            Console.WriteLine(DateTime.Now);
+            Console.WriteLine(tmpDate.ToString("ddd HH:mm"));
 
             Console.ReadLine();
         }

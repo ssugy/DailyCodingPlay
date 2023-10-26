@@ -4,6 +4,7 @@ using UnityEngine;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System;
+using UnityEditor.Search;
 
 public class MySQLTEST : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class MySQLTEST : MonoBehaviour
 `       flush privileges;
      */
     // 위의 내용은, 동일한 root이름의 유저를 만들어서, host를 %로 변경하는 쿼리입니다. 모든 경로에서 접속이 가능합니다.
-    private string ipAdress = "192.168.0.243";
+    private string ipAdress = "172.33.32.138";
     private string port = "3306";
     private string dbID = "root";
     private string dbPW = "1234";
@@ -31,7 +32,8 @@ public class MySQLTEST : MonoBehaviour
 
         try
         {
-            SqlConn = new MySqlConnection(strConn);
+            SqlConn = new MySqlConnection(strConn); // 이미 접속이 되어있음
+
         }
         catch (System.Exception e)
         {
@@ -41,16 +43,50 @@ public class MySQLTEST : MonoBehaviour
 
     private void Start()
     {
-        string query = $"use {dbName}; select * from actor;";
-        DataSet ds = OnSelectRequest(query, "actor");
+        
 
-        // XML형태로 결과물 보기
-        //Debug.Log(ds.GetXml());
+        
+    }
 
-        // row단위로 결과물 보기.
-        foreach (DataRow item in ds.Tables[0].Rows)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("데이터 로우 : " + item["first_name"]);
+            string query = $"use {dbName}; select * from actor;";
+            DataSet ds = OnSelectRequest(query, "actor");
+
+            // XML형태로 결과물 보기
+            //Debug.Log(ds.GetXml());
+
+            // row단위로 결과물 보기.
+            foreach (DataRow item in ds.Tables[0].Rows)
+            {
+                Debug.Log("데이터 로우 : " + item["first_name"]);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SqlConn.Open();     // DB연결
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            string query = $"use {dbName}; select * from actor;";
+            DataSet ds = OnSelectRequest(query, "actor");
+
+            // XML형태로 결과물 보기
+            //Debug.Log(ds.GetXml());
+
+            // row단위로 결과물 보기.
+            foreach (DataTable item in ds.Tables)
+            {
+                Debug.Log(item.GetType().ToString());
+            }
+
+            foreach (DataColumn item in ds.Tables[0].Rows)
+            {
+                Debug.Log(item.ColumnName);
+                
+            }
         }
     }
 
@@ -65,25 +101,40 @@ public class MySQLTEST : MonoBehaviour
         try
         {
             SqlConn.Open();     // DB연결
-
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = SqlConn;
-            cmd.CommandText = query;
-
-            // adapter방식으로 데이터 가져옴.
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            adapter.Fill(ds, tableName);
-
+            DataSet DS = SelectLogic(query, tableName);
             SqlConn.Close();
 
-            return ds;
+            return DS;
         }
         catch (Exception e)
         {
-            Debug.Log("에러발생 : " + e.Message);
+            // 이렇게 처리 할 수 있음.
+            if (e.Message.Equals("The connection is already open."))
+            {
+                Debug.Log("에러발생 : " + e.Message);
+
+                SqlConn.Close();
+                SqlConn.Open();
+                DataSet DS = SelectLogic(query, tableName);
+                SqlConn.Close();
+                
+                return DS;
+            }
             return null;
         }
+    }
+
+    private DataSet SelectLogic(string _query, string _tableName)
+    {
+        MySqlCommand cmd = new MySqlCommand();
+        cmd.Connection = SqlConn;
+        cmd.CommandText = _query;
+
+        // adapter방식으로 데이터 가져옴.
+        MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+        DataSet ds = new DataSet();
+        adapter.Fill(ds, _tableName);
+        return ds;
     }
 
     private void OnApplicationQuit()

@@ -1,9 +1,9 @@
-using AForge.Genetic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using System.Xml;
 
 
 public enum Schedule
@@ -27,8 +27,11 @@ public enum DayOfWeekShort
 
 public class CMD : MonoBehaviour
 {
+    static string result;
+
     private static void ExcuteCMD(string command)
     {
+        result = string.Empty;
         Process process = new Process();
 
         process.StartInfo.FileName = "cmd.exe";
@@ -37,10 +40,8 @@ public class CMD : MonoBehaviour
         process.StartInfo.RedirectStandardOutput = true;
         process.StartInfo.UseShellExecute = false;
         process.StartInfo.CreateNoWindow = true;
-
-        // 데이터 리시브용 델리게이트 - 여기에서 결과물이 출력된다.
-        process.OutputDataReceived += (sender, e) => UnityEngine.Debug.Log(e.Data); // Print command output
-
+        process.OutputDataReceived += (sender, e) => result += e.Data;
+        
         process.Start();
         process.BeginOutputReadLine();
         process.WaitForExit();
@@ -60,6 +61,12 @@ public class CMD : MonoBehaviour
     {
         string restartCMD = "shutdown -r -f -t 0";
         ExcuteCMD(restartCMD);
+    }
+
+    // 스케줄러 파일 있는지 확인
+    public void CheckSchTask()
+    {
+
     }
 
     // 스케줄러 설정 실행
@@ -107,15 +114,54 @@ public class CMD : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            CMD.MakeScheduler(Schedule.Disable, "10:12", "Mon");
+            string CMS_msg = string.Empty;
+            try
+            {
+                ExcuteCMD("schtasks /query /tn cms /xml");
+                XmlDocument xml = new XmlDocument();
+                xml.LoadXml(result);
+                string schType = xml.GetElementsByTagName("Triggers")[0].ChildNodes[0].Name;
+                if (schType.Equals("CalendarTrigger"))
+                {
+                    schType = xml.GetElementsByTagName("CalendarTrigger")[0].ChildNodes[1].Name;
+                    if (schType.Equals("ScheduleByDay"))
+                    {
+                        // Daily|none|23:10:00
+                        CMS_msg += $"Daily|";
+                        CMS_msg += "none|";
+                        CMS_msg += $"{xml.GetElementsByTagName("StartBoundary")[0].InnerText.Split('T')[1].Substring(0, 5)}";  //시간추가
+                    }
+                    else if (schType.Equals("ScheduleByWeek"))
+                    {
+                        // Weekly|Monday|01:06:00
+                        CMS_msg += $"Weekly|";
+                        CMS_msg += $"{xml.GetElementsByTagName("DaysOfWeek")[0].ChildNodes[0].Name.Substring(0,3)}|";
+                        CMS_msg += $"{xml.GetElementsByTagName("StartBoundary")[0].InnerText.Split('T')[1].Substring(0, 5)}";  //시간추가
+                    }
+                }
+                else if (schType.Equals("TimeTrigger"))
+                {
+                    // once인경우 들어옴 - Once|2023-08-22|01:07:00
+                    CMS_msg += "Once|";
+                    CMS_msg += xml.GetElementsByTagName("StartBoundary")[0].InnerText.Split('T')[0] + "|";
+                    CMS_msg += xml.GetElementsByTagName("StartBoundary")[0].InnerText.Split('T')[1].Substring(0, 5);
+                }
+            }
+            catch (Exception e)
+            {
+                // 루트 엘리멘탈 없다고 뜸 - 파일이 없는 경우
+                CMS_msg = string.Empty;
+                UnityEngine.Debug.Log("스케줄러 존재하지 않음 : " + e.Message);
+            }
+            UnityEngine.Debug.Log(CMS_msg);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            CMD.MakeScheduler(Schedule.Daily, "10:12", "Mon");
+            //CMD.MakeScheduler(Schedule.Daily, "10:12", "Mon");
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            CMD.MakeScheduler(Schedule.Once, "14:12", "Fri");
+            //CMD.MakeScheduler(Schedule.Once, "14:12", "Fri");
         }
     }
 }
