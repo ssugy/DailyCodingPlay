@@ -1,0 +1,8 @@
+{
+    "dotnet.defaultSolution": "disable",
+    "cmake.configureOnOpen": false,
+    "glsllint.additionalStageAssociations": {
+
+    },
+    "glsllint.glslifyUseCurrentFileAsBasedir": true
+}
