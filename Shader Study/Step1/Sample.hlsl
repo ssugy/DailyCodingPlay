@@ -129,7 +129,7 @@ void mainImage( out float4 fragColor, in float2 fragCoord )
 	float2 uv = fragCoord.xy;
     //center of the image
     float2 c = iResolution.xy/2.0;
-    finalColor = float3( 0.3*_cross(uv, c, 240.0) );
+    finalColor = float(0.3*_cross(uv, c, 240.0) );
     finalColor += ( circle(uv, c, 100.0, 1.0)
                   + circle(uv, c, 165.0, 1.0) ) * blue1;
     finalColor += (circle(uv, c, 240.0, 2.0) );//+ dots(uv,c,240.0)) * blue4;
@@ -152,8 +152,18 @@ void mainImage( out float4 fragColor, in float2 fragCoord )
     fragColor = float4( finalColor, 1.0 );
 }
 
-// 이게 여기서 근본적으로 픽셀 셰이더로 출력을 해야지 보이는데, 그렇게 하려면
-// 리턴이 float4이고, 메인함수 이름이 main이어야 한다.
-void main() {
-    mainImage(gl_FragColor,gl_FragCoord.xy);
+// Collect input from the vertex shader. 
+// The COLOR semantic must match the semantic in the vertex shader code.
+struct PixelShaderInput
+{
+    float4 pos : SV_Position;
+    float4 color : COLOR; // Color for the pixel
+};
+
+// Set the pixel color value for the renter target. 
+float4 main(PixelShaderInput input) : SV_Target
+{
+    //mainImage(input.color, input.pos.xy);
+    //return input.color;
+    return float4(1,1,1,1);
 }
