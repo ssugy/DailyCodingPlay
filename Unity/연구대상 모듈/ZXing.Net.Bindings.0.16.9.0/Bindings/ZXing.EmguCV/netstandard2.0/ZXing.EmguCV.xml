@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZXing.EmguCV</name>
+    </assembly>
+    <members>
+        <member name="T:ZXing.EmguCV.ImageLuminanceSource">
+            <summary>
+            A luminance source class which consumes a Image from EmguCV and calculates the luminance values based on the bytes of the image
+            </summary>
+        </member>
+        <member name="M:ZXing.EmguCV.ImageLuminanceSource.#ctor(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZXing.EmguCV.ImageLuminanceSource"/> class
+            with an image instance
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:ZXing.EmguCV.ImageLuminanceSource.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZXing.EmguCV.ImageLuminanceSource"/> class.
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="M:ZXing.EmguCV.ImageLuminanceSource.CreateLuminanceSource(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Should create a new luminance source with the right class type.
+            The method is used in methods crop and rotate.
+            </summary>
+            <param name="newLuminances">The new luminances.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <returns></returns>
+        </member>
+        <member name="T:ZXing.EmguCV.BarcodeReader">
+            <summary>
+            A barcode reader which accepts an Image instance from EmguCV
+            </summary>
+        </member>
+        <member name="M:ZXing.EmguCV.BarcodeReader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZXing.EmguCV.BarcodeReader"/> class.
+            </summary>
+        </member>
+        <member name="M:ZXing.EmguCV.BarcodeReader.#ctor(ZXing.Reader,System.Func{Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte},ZXing.LuminanceSource},System.Func{ZXing.LuminanceSource,ZXing.Binarizer})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZXing.EmguCV.BarcodeReader"/> class.
+            </summary>
+            <param name="reader">Sets the reader which should be used to find and decode the barcode.
+            If null then MultiFormatReader is used</param>
+            <param name="createLuminanceSource">Sets the function to create a luminance source object for a bitmap.
+            If null, an exception is thrown when Decode is called</param>
+            <param name="createBinarizer">Sets the function to create a binarizer object for a luminance source.
+            If null then HybridBinarizer is used</param>
+        </member>
+        <member name="M:ZXing.EmguCV.BarcodeReader.#ctor(ZXing.Reader,System.Func{Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte},ZXing.LuminanceSource},System.Func{ZXing.LuminanceSource,ZXing.Binarizer},System.Func{System.Byte[],System.Int32,System.Int32,ZXing.RGBLuminanceSource.BitmapFormat,ZXing.LuminanceSource})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZXing.BarcodeReader`1"/> class.
+            </summary>
+            <param name="reader">Sets the reader which should be used to find and decode the barcode.
+            If null then MultiFormatReader is used</param>
+            <param name="createLuminanceSource">Sets the function to create a luminance source object for a bitmap.
+            If null, an exception is thrown when Decode is called</param>
+            <param name="createBinarizer">Sets the function to create a binarizer object for a luminance source.
+            If null then HybridBinarizer is used</param>
+            <param name="createRGBLuminanceSource">Sets the function to create a luminance source object for a rgb raw byte array.</param>
+        </member>
+        <member name="T:ZXing.EmguCV.IBarcodeReader">
+            <summary>
+            The interface for a barcode reader which accepts an Image instance from EmguCV
+            </summary>
+        </member>
+        <member name="T:ZXing.BarcodeReaderExtensions">
+            <summary>
+            extensions methods which are working directly on any IBarcodeReaderGeneric implementation
+            </summary>
+        </member>
+        <member name="M:ZXing.BarcodeReaderExtensions.Decode(ZXing.IBarcodeReaderGeneric,Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            uses the IBarcodeReaderGeneric implementation and the <see cref="T:ZXing.EmguCV.ImageLuminanceSource"/> class for decoding
+            </summary>
+            <param name="reader"></param>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZXing.BarcodeReaderExtensions.DecodeMultiple``1(ZXing.IBarcodeReaderGeneric,Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            uses the IBarcodeReaderGeneric implementation and the <see cref="T:ZXing.EmguCV.ImageLuminanceSource"/> class for decoding
+            </summary>
+            <param name="reader"></param>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

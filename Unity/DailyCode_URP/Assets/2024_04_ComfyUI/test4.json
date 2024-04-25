@@ -1,0 +1,110 @@
+{
+	"id": "0d96ac91-75b3-4937-8977-6b3b0f6b5763",
+	"prompt": {
+		"3": {
+			"inputs": {
+				"seed": 1022798523328025,
+				"steps": 20,
+				"cfg": 8,
+				"sampler_name": "euler",
+				"scheduler": "normal",
+				"denoise": 1,
+				"model": [
+					"4",
+					0
+				],
+				"positive": [
+					"6",
+					0
+				],
+				"negative": [
+					"7",
+					0
+				],
+				"latent_image": [
+					"5",
+					0
+				]
+			},
+			"class_type": "KSampler",
+			"_meta": {
+				"title": "KSampler"
+			}
+		},
+		"4": {
+			"inputs": {
+				"ckpt_name": "AnythingXL_xl.safetensors"
+			},
+			"class_type": "CheckpointLoaderSimple",
+			"_meta": {
+				"title": "Load Checkpoint"
+			}
+		},
+		"5": {
+			"inputs": {
+				"width": 512,
+				"height": 512,
+				"batch_size": 1
+			},
+			"class_type": "EmptyLatentImage",
+			"_meta": {
+				"title": "Empty Latent Image"
+			}
+		},
+		"6": {
+			"inputs": {
+				"text": "impressionist painting masterpiece,best quality, ultra realistic,32k,RAW photo,detail skin, 8k uhd, dslr,high quality, film grain,(masterpiece,best quality:1.5) cats",
+				"clip": [
+					"4",
+					1
+				]
+			},
+			"class_type": "CLIPTextEncode",
+			"_meta": {
+				"title": "CLIP Text Encode (Prompt)"
+			}
+		},
+		"7": {
+			"inputs": {
+				"text": "",
+				"clip": [
+					"4",
+					1
+				]
+			},
+			"class_type": "CLIPTextEncode",
+			"_meta": {
+				"title": "CLIP Text Encode (Prompt)"
+			}
+		},
+		"8": {
+			"inputs": {
+				"samples": [
+					"3",
+					0
+				],
+				"vae": [
+					"4",
+					2
+				]
+			},
+			"class_type": "VAEDecode",
+			"_meta": {
+				"title": "VAE Decode"
+			}
+		},
+		"9": {
+			"inputs": {
+				"filename_prefix": "ComfyUI",
+				"images": [
+					"8",
+					0
+				]
+			},
+			"class_type": "SaveImage",
+			"_meta": {
+				"title": "Save Image"
+			}
+		}
+	}
+}

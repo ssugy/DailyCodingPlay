@@ -1,0 +1,46 @@
+{
+    "name": "DevAction",
+    "maps": [
+        {
+            "name": "TestMaps",
+            "id": "1bb025ac-0dd8-46f5-971b-6323c52cb495",
+            "actions": [
+                {
+                    "name": "TestAction",
+                    "type": "Value",
+                    "id": "91ff94df-6c8c-4b9c-be45-a677b3312c78",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "45a1cb0d-99cf-4528-906a-555ed77a8ef6",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "TestAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
