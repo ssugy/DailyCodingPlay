@@ -1,0 +1,3 @@
+ffmpeg -i input.mp4 -color_primaries bt709 -color_trc bt709 -colorspace bt709 -color_range pc -vcodec libx264 -profile:v baseline output.mp4
+
+ffmpeg -i "D001 - butter_dance.mp4" -color_primaries bt709 -color_trc bt709 -colorspace bt709 -color_range pc -vcodec libx264 -profile:v baseline "result\D001 - butter_dance.mp4"
